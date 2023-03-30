@@ -184,6 +184,7 @@
         }
         .copy {
           &::after {
+            display: none;
           }
           &:hover {
             &::after {

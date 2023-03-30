@@ -212,6 +212,9 @@ button {
   .container .content .offer .generate {
     padding: 10px 12px;
   }
+  .container .content .offer .copy::after {
+    display: none;
+  }
   .container .content ul.messages {
     gap: 15px;
   }
