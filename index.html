@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Password Controller</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="content">
+        <h1 class="title">Test your password</h1>
+        <form id="passwordForm">
+          <input id="passwordInput" type="text" placeholder="Enter password" />
+          <button type="submit">Check</button>
+        </form>
+        <div class="offer">
+          <button class="generate">Generate Password</button>
+          <button class="copy"><i class="fa-regular fa-copy"></i></button>
+          <span class="copyMessage"> Password copied! </span>
+        </div>
+        <ul class="messages"></ul>
+        <div class="results">
+          <span class="score"></span>
+          <span class="result"></span>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script type="module" src="./js/app.js"></script>
+</html>
