@@ -41,7 +41,11 @@ button {
   display: flex;
 }
 
-.container .content #passwordForm #passwordInput {
+.container .content #passwordForm .inputContainer {
+  position: relative;
+}
+
+.container .content #passwordForm .inputContainer #passwordInput {
   border: 1px solid #fff;
   border-right: none;
   padding: 12px 16px;
@@ -52,9 +56,30 @@ button {
   font-size: 1.2rem;
 }
 
-.container .content #passwordForm #passwordInput::placeholder {
+.container .content #passwordForm .inputContainer #passwordInput::placeholder {
   color: #fff;
   font-size: 1.1rem;
+}
+
+.container .content #passwordForm .inputContainer i {
+  color: #fff;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.container .content #passwordForm .inputContainer i.fa-eye-slash {
+  display: none;
+}
+
+.container .content #passwordForm .inputContainer.visible .fa-eye {
+  display: none;
+}
+
+.container .content #passwordForm .inputContainer.visible .fa-eye-slash {
+  display: block;
 }
 
 .container .content #passwordForm button {

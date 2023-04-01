@@ -12,20 +12,44 @@
     #passwordForm {
       margin-top: 15px;
       display: flex;
-      #passwordInput {
-        border: 1px solid #fff;
-        border-right: none;
-        padding: 12px 16px;
-        border-radius: 6px 0 0 6px;
-        background: transparent;
-        outline: none;
-        color: #fff;
-        font-size: 1.2rem;
-        &::placeholder {
+      .inputContainer {
+        position: relative;
+        #passwordInput {
+          border: 1px solid #fff;
+          border-right: none;
+          padding: 12px 16px;
+          border-radius: 6px 0 0 6px;
+          background: transparent;
+          outline: none;
           color: #fff;
-          font-size: 1.1rem;
+          font-size: 1.2rem;
+          &::placeholder {
+            color: #fff;
+            font-size: 1.1rem;
+          }
+        }
+        i {
+          color: #fff;
+          position: absolute;
+          right: 10px;
+          top: 50%;
+          transform: translateY(-50%);
+          cursor: pointer;
+          &.fa-eye-slash {
+            display: none;
+          }
+        }
+
+        &.visible {
+          .fa-eye {
+            display: none;
+          }
+          .fa-eye-slash {
+            display: block;
+          }
         }
       }
+
       button {
         color: #fff;
         font-size: 1.2rem;

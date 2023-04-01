@@ -1,6 +1,6 @@
 import { checkPassword, generatePassword } from "./password.js";
-const passwordInput = document.querySelector("#passwordInput");
 const passwordForm = document.querySelector("#passwordForm");
+const passwordInput = passwordForm.querySelector("#passwordInput");
 const checkBtn = passwordForm.querySelector("button");
 const messages = document.querySelector(".messages");
 const score = document.querySelector(".score");
@@ -8,6 +8,8 @@ const result = document.querySelector(".result");
 const generateBtn = document.querySelector(".generate");
 const copyBtn = document.querySelector(".copy");
 const offer = document.querySelector(".offer");
+const inputContainer = passwordForm.querySelector(".inputContainer");
+const eyeIcons = inputContainer.querySelectorAll("i");
 
 //generate password
 const generate = () => {
@@ -53,7 +55,20 @@ const checkInput = (e) => {
     checkBtn.classList.remove("abled");
     checkBtn.classList.add("disabled");
   }
+  e.target.value = e.target.value.trim();
 };
+
+//change visible status of password
+function changeVisibility() {
+  inputContainer.classList.toggle("visible");
+  passwordInput.type == "password"
+    ? (passwordInput.type = "text")
+    : (passwordInput.type = "password");
+}
+for (let i = 0; i < eyeIcons.length; i++) {
+  eyeIcons[i].addEventListener("click", changeVisibility);
+}
+
 generateBtn.addEventListener("click", generate);
 copyBtn.addEventListener("click", copy);
 passwordForm.addEventListener("submit", (e) => check(e));
