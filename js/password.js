@@ -54,13 +54,13 @@ function checkNumber(password) {
     let numOfNum = password.length - password.replace(/\d/g, "").length;
     return {
       status: true,
-      message: "Password contains number - (e.g., 1,2,3)",
+      message: "Password contains number - (e.g., 1,5,9)",
       power: numOfNum * 4,
     };
   } else {
     return {
       status: false,
-      message: "Password doesn't contain number - (e.g., 1,2,3)",
+      message: "Password doesn't contain number - (e.g., 1,5,9)",
       power: 0,
     };
   }
@@ -149,6 +149,237 @@ function minReq(password) {
     };
   }
 }
+//continually numbers
+function continuallyNums(password) {
+  let n = 0;
+  for (let i = 0; i < password.length - 1; i++) {
+    if (/\d/.test(password[i]) && /\d/.test(password[i + 1])) {
+      n++;
+    }
+  }
+  if (n == 0) {
+    return {
+      status: true,
+      message: "Password doesn't contain continually number - (e.g., '926')",
+      power: 0,
+    };
+  } else {
+    return {
+      status: false,
+      message: "Password contains continually number - (e.g., '926')",
+      power: -(n * 2),
+    };
+  }
+}
+//continually lowercase
+function contLowCase(password) {
+  let n = 0;
+  for (let i = 0; i < password.length - 1; i++) {
+    if (/[a-z]/.test(password[i]) && /[a-z]/.test(password[i + 1])) {
+      n++;
+    }
+  }
+  if (n == 0) {
+    return {
+      status: true,
+      message: "Password doesn't contain continually lowercase - (e.g., 'afh')",
+      power: 0,
+    };
+  } else {
+    return {
+      status: false,
+      message: "Password contains continually lowercase - (e.g., 'afh')",
+      power: -(n * 2),
+    };
+  }
+}
+//continually uppercase
+function contUppCase(password) {
+  let n = 0;
+  for (let i = 0; i < password.length - 1; i++) {
+    if (/[A-Z]/.test(password[i]) && /[A-Z]/.test(password[i + 1])) {
+      n++;
+    }
+  }
+  if (n == 0) {
+    return {
+      status: true,
+      message: "Password doesn't contain continually uppercase - (e.g., 'AFH')",
+      power: 0,
+    };
+  } else {
+    return {
+      status: false,
+      message: "Password contains continually uppercase - (e.g., 'AFH')",
+      power: -(n * 2),
+    };
+  }
+}
+//semantic numbers
+function semanticNums(password) {
+  let n = 0;
+  for (let i = 0; i < password.length - 2; i++) {
+    if (
+      (Number(password[i]) + 1 == Number(password[i + 1]) &&
+        Number(password[i + 1]) + 1 == Number(password[i + 2])) ||
+      (Number(password[i]) - 1 == Number(password[i + 1]) &&
+        Number(password[i + 1]) - 1 == Number(password[i + 2]))
+    ) {
+      n++;
+    }
+  }
+  if (n == 0) {
+    return {
+      status: true,
+      message:
+        "Password doesn't contain semantic numbers(min:3) - (e.g., '123','321')",
+      power: 0,
+    };
+  } else {
+    return {
+      status: false,
+      message:
+        "Password contains semantic numbers(min:3) - (e.g., '123','321')",
+      power: -(n * 3),
+    };
+  }
+}
+//semantic letters
+function semanticLetters(password) {
+  const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
+  let n = 0;
+  for (let i = 0; i < password.length - 2; i++) {
+    if (
+      (alphabet.indexOf(password[i]) + 1 == alphabet.indexOf(password[i + 1]) &&
+        alphabet.indexOf(password[i + 1]) + 1 ==
+          alphabet.indexOf(password[i + 2])) ||
+      (alphabet.indexOf(password[i]) - 1 == alphabet.indexOf(password[i + 1]) &&
+        alphabet.indexOf(password[i + 1]) - 1 ==
+          alphabet.indexOf(password[i + 2]))
+    ) {
+      n++;
+    }
+  }
+  if (n == 0) {
+    return {
+      status: true,
+      message:
+        "Password doesn't contain semantic letters(min:3) - (e.g., 'abc','cba')",
+      power: 0,
+    };
+  } else {
+    return {
+      status: false,
+      message:
+        "Password contains semantic letters(min:3) - (e.g., 'abc','cba')",
+      power: -(n * 3),
+    };
+  }
+}
+//semantic symbols
+function semanticSymbols(password) {
+  const symbols = ")!@#$%^&*()".split("");
+  let n = 0;
+  for (let i = 0; i < password.length - 2; i++) {
+    if (
+      (symbols.indexOf(password[i]) + 1 == symbols.indexOf(password[i + 1]) &&
+        symbols.indexOf(password[i + 1]) + 1 ==
+          symbols.indexOf(password[i + 2])) ||
+      (symbols.indexOf(password[i]) - 1 == symbols.indexOf(password[i + 1]) &&
+        symbols.indexOf(password[i + 1]) - 1 ==
+          symbols.indexOf(password[i + 2]))
+    ) {
+      n++;
+    }
+  }
+  if (n == 0) {
+    return {
+      status: true,
+      message:
+        "Password doesn't contain semantic symbols(min:3) - (e.g., '!@#','#@!')",
+      power: 0,
+    };
+  } else {
+    return {
+      status: false,
+      message:
+        "Password contains semantic symbols(min:3) - (e.g., '!@#$','#@!')",
+      power: -(n * 3),
+    };
+  }
+}
+//repeated symbols
+function repeatedSymbols(password) {
+  let n = 0;
+  for (let i = 0; i < password.length; i++) {
+    let count = 0;
+    for (let j = 0; j < password.length; j++) {
+      if (password[i] == password[j]) {
+        count++;
+      }
+    }
+    if (count > 1) {
+      n++;
+    }
+  }
+  if (n == 0) {
+    return {
+      status: true,
+      message: "Password doesn't contain repeated symbols - (e.g., 'ss')",
+      power: 0,
+    };
+  } else {
+    return {
+      status: false,
+      message: "Password contains repeated symbols - (e.g., 'ss')",
+      power: -n,
+    };
+  }
+}
+//only letters
+function onlyLetters(password) {
+  let status = false;
+  for (let i = 0; i < password.length; i++) {
+    if (!/[a-z]/.test(password[i].toLowerCase())) {
+      status = true;
+    }
+  }
+  if (status) {
+    return {
+      status: true,
+      message: "Password doesn't contains only letter - (e.g., 'hello')",
+      power: 0,
+    };
+  } else {
+    return {
+      status: false,
+      message: "Password contains only letter - (e.g., 'hello')",
+      power: -password.length,
+    };
+  }
+}
+//only numbers
+function onlyNumbers(password) {
+  let status = false;
+  for (let i = 0; i < password.length; i++) {
+    if (!/\d/.test(password[i])) {
+      status = true;
+    }
+  }
+  if (status) {
+    return {
+      status: true,
+      message: "Password doesn't contains only number - (e.g., '298')",
+      power: 0,
+    };
+  } else {
+    return {
+      status: false,
+      message: "Password contains only letter - (e.g., '298')",
+      power: -password.length,
+    };
+  }
+}
 //weakness comments
 function detectWeakness(password) {
   let allFunc = [
@@ -159,6 +390,15 @@ function detectWeakness(password) {
     checkSymbole(password),
     numSymb(password),
     minReq(password),
+    continuallyNums(password),
+    contLowCase(password),
+    contUppCase(password),
+    semanticNums(password),
+    semanticLetters(password),
+    semanticSymbols(password),
+    repeatedSymbols(password),
+    onlyLetters(password),
+    onlyNumbers(password),
   ];
   let messages = [];
   for (let i = 0; i < allFunc.length; i++) {
@@ -178,7 +418,16 @@ function calcResultPower(password) {
     checkNumber(password).power +
     checkSymbole(password).power +
     numSymb(password).power +
-    minReq(password).power;
+    minReq(password).power +
+    continuallyNums(password).power +
+    contLowCase(password).power +
+    contUppCase(password).power +
+    semanticNums(password).power +
+    semanticSymbols(password).power +
+    repeatedSymbols(password).power +
+    onlyLetters(password).power +
+    onlyNumbers(password).power +
+    semanticLetters(password).power;
   if (resultPower > 100) {
     resultPower = 100;
   }

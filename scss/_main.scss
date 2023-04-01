@@ -5,7 +5,6 @@
     align-items: center;
     margin: 0 auto;
     max-width: 80%;
-
     .title {
       letter-spacing: 1px;
       white-space: nowrap;
@@ -110,10 +109,10 @@
     }
     ul.messages {
       width: 90%;
-      margin-top: 30px;
+      margin-top: 20px;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 10px;
       li {
         list-style-type: none;
         display: flex;
@@ -121,8 +120,8 @@
         gap: 20px;
         font-size: 1.1rem;
         .status {
-          min-width: 20px;
-          min-height: 20px;
+          min-width: 18px;
+          min-height: 18px;
           border-radius: 50%;
           background-color: green;
           &.true {
@@ -141,7 +140,7 @@
       }
     }
     .results {
-      margin-top: 40px;
+      margin-top: 20px;
       display: flex;
       justify-content: space-between;
       width: 90%;
@@ -184,7 +183,6 @@
         }
         .copy {
           &::after {
-            display: none;
           }
           &:hover {
             &::after {
@@ -206,13 +204,13 @@
         }
       }
       ul.messages {
-        gap: 15px;
+        gap: 10px;
         li {
           font-size: 0.9rem;
           gap: 10px;
           .status {
-            max-width: 15px;
-            max-height: 15px;
+            max-width: 12px;
+            max-height: 12px;
             &.true {
             }
             &.false {
@@ -225,7 +223,7 @@
         }
       }
       .results {
-        margin-top: 20px;
+        margin-top: 15px;
         .score {
           font-size: 1.25rem;
         }
