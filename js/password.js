@@ -483,5 +483,18 @@ export function generatePassword() {
   password = shuffle(password.slice(1, password.length - 1));
   password.push(arr[1]);
   password.unshift(arr[0]);
-  return password.join("");
+  password = password.join("");
+  let allTests = detectWeakness(password);
+  let status = true;
+  for (let i = 0; i < allTests.length; i++) {
+    if (!allTests[i].status) {
+      status = false;
+      break;
+    }
+  }
+  if (status) {
+    return password;
+  } else {
+    return generatePassword();
+  }
 }
